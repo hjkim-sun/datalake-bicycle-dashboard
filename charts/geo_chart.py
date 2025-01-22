@@ -79,11 +79,12 @@ class GeoChart(ChartBase):
                                              hover_data=[yaxis],
                                              zoom=11,
                                              height=700,
+                                             color_continuous_scale=[[0, 'green'], [1.0, 'red']],
+                                             color=yaxis
                                              ).update_layout(
-                                                margin={"r":0,"t":0,"l":0,"b":0},
-                                             ),
+                        margin={"r": 0, "t": 0, "l": 0, "b": 0},
+                    ),
                     config={'scrollZoom':True},
 
                 )
             ]
-

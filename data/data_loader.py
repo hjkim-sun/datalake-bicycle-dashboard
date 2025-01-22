@@ -6,7 +6,7 @@ import os, pathlib
 
 
 AWS_USER_NM = 'py-dash'
-STG_BUCKET_NM = 's3://athena-query-result-{고유명}'
+STG_BUCKET_NM = 's3://athena-query-result-hjkim5'
 
 
 class DataLoader():
@@ -43,10 +43,15 @@ class DataLoader():
             aws_secret_access_key=self.secret_key,
             region_name="ap-northeast-2"  # 원하는 리전으로 설정
         )
-
+        repair_query = f"MSCK REPAIR TABLE lesson.bicycle_rent_info"
+        wr.athena.start_query_execution(
+            sql=repair_query,
+            database='lesson',
+            s3_output=STG_BUCKET_NM,
+            boto3_session=session
+        )
         # 10분 구간으로 rent_cnt, return_cnt 집계하는 쿼리
-        sql = f'''
-                    select
+        sql = f'''select
                         stt_id
                         ,stt_nm
                         ,crt_dttm
@@ -78,6 +83,7 @@ class DataLoader():
         )
         df['hh'] = df['crt_dttm'].dt.hour
         print('data load complete')
+        # print(df[:10])            # 10줄만 출력
         return df
 
 
