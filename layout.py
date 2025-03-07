@@ -28,12 +28,12 @@ class Layout():
                     children=[
                         html.A(
                             html.Button(id='github-button', className='link-button', children="github"),
-                            href="https://github.com/kalwraith/yeardream_airflow/",
+                            href="https://github.com/hjkim-sun/datalake-bicycle-dashboard",
                             target="_blank"
                         ),
                         html.A(
                             html.Button(id='inflearn-button', className='link-button', children="Inflearn"),
-                            href="https://plotly.com/get-demo/",
+                            href="https://inf.run/j1iwt",
                             target="_blank"
                         )
                     ],
